@@ -22,30 +22,36 @@ namespace SWGame
     public partial class MainWindow : Window
     {
         //Opponent newOpponent = new Opponent(100);
-        Sith sith1;
-        Jedi jedi1,jedi2;
+        
+        Character player1;
+        Character player2;
+        
         
         string description = "";
 
         public MainWindow()
         {
             InitializeComponent();
-            
-            sith1 = new Sith("Kylo Ren",20,30,100,10);
+            descriptionBox.Text = "";
+            player1Attack.Visibility = Visibility.Hidden;
+            player2Attack.Visibility = Visibility.Hidden;
+            player1Spell.Visibility = Visibility.Hidden;
+            player2Spell.Visibility = Visibility.Hidden;
 
-            jedi1 = new Jedi("Anakin Skywalker", 30, 25, 100, 10);
-            jedi2 = new Jedi("Anakin Skywalker", 30, 25, 100, 10);
-            sith1.opponent = jedi1;
-            jedi1.opponent = sith1;
 
-            List<Character> inty = new List<Character>()
+
+
+            List<Character> chars = new List<Character>()
             {
-                jedi1,sith1,jedi2,
+                new Sith("Kylo Ren",20,30,100,10),
+                new Jedi("Anakin Skywalker", 30, 25, 100, 10),
+                new Jedi("Obi-Wan Kenobi", 30, 25, 100, 10),
             };
 
-            listBoxOfCharacters.ItemsSource = inty;
+            listBoxOfCharacters.ItemsSource = chars;
 
 
+           
 
 
 
@@ -55,38 +61,101 @@ namespace SWGame
 
         private void player1Attack_Click(object sender, RoutedEventArgs e)
         {
-            description+= jedi1.Attack_Move();
+            description += player1.Attack_Move().ToString();
             UpdateLabels();
+            WinCondition();
+            
         }
 
         private void player1Spell_Click(object sender, RoutedEventArgs e)
-        {                    
-            description += jedi1.Force_Push();
+        {
+            description += player1.Force();
             UpdateLabels();
+            WinCondition();
         }
         private void player2Attack_Click(object sender, RoutedEventArgs e)
         {
-            description += sith1.Attack_Move();
+            description += player2.Attack_Move();
             UpdateLabels();
+            WinCondition();
+            
+            
         }
 
         private void player2Spell_Click(object sender, RoutedEventArgs e)
         {
-            description += sith1.Force_Lightning();
-            UpdateLabels();
+           description += player2.Force();
+           UpdateLabels();
+           WinCondition();
         }
 
         private void UpdateLabels()
         {
             descriptionBox.Text = description;
-            player1Name.Content = jedi1.Name;
-            player2Name.Content = sith1.HP.ToString();
+            
+           
         }
-        private void Labels()
+
+        private void player1Character_Click(object sender, RoutedEventArgs e)
         {
+            
+            
+            player1 = (Character)listBoxOfCharacters.SelectedItem;
+            
+            player1Name.Content = player1.Name;
+
+
 
         }
 
-        
+        private void player2Character_Click(object sender, RoutedEventArgs e)
+        {
+            player2 = (Character)listBoxOfCharacters.SelectedItem;
+            
+            player2Name.Content = player2.Name;
+            
+        }
+        private void RestartGame()
+        {
+            player1Attack.Visibility = Visibility.Hidden;
+            player2Attack.Visibility = Visibility.Hidden;
+            player1Spell.Visibility = Visibility.Hidden;
+            player2Spell.Visibility = Visibility.Hidden;
+            playButton.Visibility = Visibility.Visible;
+
+            player1Name.Content = "";
+            player1Name.Content = "";
+
+            player1 = null;
+            player2 = null;
+            descriptionBox.Text = "";
+        }
+        private void WinCondition()
+        {
+            if (player1.HP <= 0)
+            {
+                MessageBox.Show("Wygrał " + player2.Name);
+                RestartGame();
+            }
+            else if (player2.HP <= 0)
+            {
+                MessageBox.Show("Wygrał " + player1.Name);
+                RestartGame();
+            }
+
+
+        }
+
+        private void playButton_Click(object sender, RoutedEventArgs e)
+        {
+            player2.opponent = player1;
+            player1.opponent = player2;
+
+            player1Attack.Visibility = Visibility.Visible;
+            player2Attack.Visibility = Visibility.Visible;
+            player1Spell.Visibility = Visibility.Visible;
+            player2Spell.Visibility = Visibility.Visible;
+            playButton.Visibility = Visibility.Hidden;
+        }
     }
 }

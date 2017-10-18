@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SWGame
 {
@@ -15,24 +16,37 @@ namespace SWGame
             this.Offensive_Stance = Offensive_Stance;
         }
 
-        public Character opponent { get; set; }
+       // public Character opponent { get; set; }
         public int Offensive_Stance { get; set; }
 
-        public string Attack_Move()
+        public override string  Attack_Move()
         {
-            int dmg = random.Next(0, Attack_Power);
-            opponent.HP = opponent.HP - dmg -Offensive_Stance ;
             
+                int dmg = random.Next(0, Attack_Power);
+                opponent.HP = opponent.HP - dmg - Offensive_Stance;
 
-            return Name + " wykonał cięcie mieczem świetlnym zadając " + dmg + " obrażeń. Dodatkowo zadał " + Offensive_Stance + " obrażeń pasywnie.\n" ;
+            if (opponent.HP <= 0)
+            {
+                return Name + " zadał konczące uderzenie mieczem świetlnym zadając " + dmg + " obrażeń oraz zabijając " + opponent.Name + ".\n";
+            }
+            return Name + " wykonał cięcie mieczem świetlnym zadając " + dmg + " obrażeń. Dodatkowo zadał " + Offensive_Stance + " obrażeń pasywnie.\n";
         }
 
-        public string Force_Lightning()
+        public override string Force()
         {
             int dmg = random.Next(0, Spell_Power);
             opponent.HP = opponent.HP - dmg ;
+            if (opponent.HP <= 0)
+            {
+                return Name + " zadał konczące uderzenie błyskawicą mocy zadając " + dmg + " obrażeń oraz zabijając " + opponent.Name + ".\n";
+            }
 
             return Name + " użył błyskawicy mocy " + dmg + " obrażeń.\n";
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
 
     }

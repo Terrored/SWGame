@@ -18,19 +18,19 @@
         </Grid.ColumnDefinitions>
         <Image x:Name="player1Image" HorizontalAlignment="Left" Height="357" VerticalAlignment="Top" Width="230"/>
         <Image x:Name="player2Image" HorizontalAlignment="Left" Height="357" VerticalAlignment="Top" Width="230" Grid.Column="2"/>
-        <Label x:Name="player1Name" Content="Label" HorizontalAlignment="Left" Margin="90,362,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="player2Name" Content="Label" HorizontalAlignment="Left" Margin="90,362,0,0" VerticalAlignment="Top" Grid.Column="2" RenderTransformOrigin="0.488,0.486"/>
+        <Label x:Name="player1Name" Content="Label" HorizontalAlignment="Left" Margin="91,344,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="player2Name" Content="Label" HorizontalAlignment="Left" Margin="91,352,0,0" VerticalAlignment="Top" Grid.Column="2" RenderTransformOrigin="0.488,0.486"/>
         <TextBox x:Name="descriptionBox" Grid.Column="1" HorizontalAlignment="Left" Height="369" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="362"/>
         <ProgressBar x:Name="player1HP" HorizontalAlignment="Left" Height="20" Margin="25,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="175"/>
         <ProgressBar x:Name="player2HP" HorizontalAlignment="Left" Height="20" Margin="25,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="175" Grid.Column="2"/>
-        <Button x:Name="player1Attack" Content="Button" HorizontalAlignment="Left" Margin="25,48,0,0" Grid.Row="1" VerticalAlignment="Top" Width="175" Click="player1Attack_Click"/>
-        <Button x:Name="player1Spell" Content="Button" HorizontalAlignment="Left" Margin="25,73,0,0" Grid.Row="1" VerticalAlignment="Top" Width="175" Click="player1Spell_Click"/>
-        <Button x:Name="player2Attack" Content="Button" HorizontalAlignment="Left" Margin="25,48,0,0" Grid.Row="1" VerticalAlignment="Top" Width="175" Grid.Column="2" Click="player2Attack_Click"/>
-        <Button x:Name="player2Spell" Content="Button" HorizontalAlignment="Left" Margin="25,73,0,0" Grid.Row="1" VerticalAlignment="Top" Width="175" Grid.Column="2" Click="player2Spell_Click"/>
-        <ListBox x:Name="listBoxOfCharacters" Grid.Column="1" HorizontalAlignment="Left" Height="58" Margin="34,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="306"/>
-        <Button x:Name="player1Character" Content="Player 1" Grid.Column="1" HorizontalAlignment="Left" Margin="34,78,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="player2Character" Content="Player 2" Grid.Column="1" HorizontalAlignment="Left" Margin="265,78,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="playButton" Content="PLAY !" Grid.Column="1" HorizontalAlignment="Left" Margin="150,125,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="player1Attack" Content="Lightsaber's attack !" HorizontalAlignment="Left" Margin="25,48,0,0" Grid.Row="1" VerticalAlignment="Top" Width="175" Click="player1Attack_Click" />
+        <Button x:Name="player1Spell" Content="Use the Force !" HorizontalAlignment="Left" Margin="25,73,0,0" Grid.Row="1" VerticalAlignment="Top" Width="175" Click="player1Spell_Click"/>
+        <Button x:Name="player2Attack" Content="Lightsaber's attack !" HorizontalAlignment="Left" Margin="25,48,0,0" Grid.Row="1" VerticalAlignment="Top" Width="175" Grid.Column="2" Click="player2Attack_Click" />
+        <Button x:Name="player2Spell" Content="Use the Force !" HorizontalAlignment="Left" Margin="25,73,0,0" Grid.Row="1" VerticalAlignment="Top" Width="175" Grid.Column="2" Click="player2Spell_Click" />
+        <ListBox x:Name="listBoxOfCharacters" Grid.Column="1" HorizontalAlignment="Left" Height="58" Margin="34,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="306" IsSynchronizedWithCurrentItem="False"/>
+        <Button x:Name="player1Character" Content="Player 1" Grid.Column="1" HorizontalAlignment="Left" Margin="34,78,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="player1Character_Click"/>
+        <Button x:Name="player2Character" Content="Player 2" Grid.Column="1" HorizontalAlignment="Left" Margin="265,78,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="player2Character_Click"/>
+        <Button x:Name="playButton" Content="PLAY !" Grid.Column="1" HorizontalAlignment="Left" Margin="150,125,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="playButton_Click"/>
 
     </Grid>
 </Window>

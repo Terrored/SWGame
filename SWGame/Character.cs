@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SWGame
 {
-     class Character
+     abstract class Character
     {
         public string Name { get; private set; }
         public int Attack_Power { get; private set; }
@@ -23,7 +23,11 @@ namespace SWGame
             HP = hp;
         }
 
-        
+        abstract public string Attack_Move();
+        abstract public string Force();
+        public Character opponent { get; set; }
+
+
 
     }
 }

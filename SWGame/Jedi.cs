@@ -17,28 +17,39 @@ namespace SWGame
             this.Defensive_Stance = Defensive_Stance;
         }
 
-        public Character opponent;
+        //public Character opponent;
         
 
         public int Defensive_Stance { get; set; }
        
 
 
-        public string Attack_Move()
+        public override string Attack_Move()
         {
             int dmg = random.Next(0, Attack_Power);
             opponent.HP = opponent.HP - dmg;
-            
+            if (opponent.HP <= 0)
+            {
+                return Name + " zadał konczące uderzenie mieczem świetlnym zadając " + dmg + " obrażeń oraz zabijając " + opponent.Name + ".\n";
+            }
             return Name + " wykonał cięcie mieczem świetlnym zadając " + dmg + " obrażeń. \n";
         }
 
-        public string Force_Push()
+        public override string Force()
         {
             int dmg = random.Next(0, Spell_Power);
             opponent.HP = opponent.HP - dmg - Defensive_Stance;
-            
+            if (opponent.HP <= 0)
+            {
+                return Name + " zadał konczące uderzenie pchnięciem mocy zadając  " + dmg + " obrażeń oraz zabijając " + opponent.Name+".\n";
+            }
+
             return Name + " wykonał pchięcie mocą zadając " + dmg + " obrażeń. Pasywnie zadał "+Defensive_Stance+" dodatkowych obrażeń.\n";
         }
-        
+        public override string ToString()
+        {
+            return Name;
+        }
+
     }
 }
