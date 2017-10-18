@@ -8,23 +8,32 @@ namespace SWGame
 {
     class Sith:Character
     {
-        public Sith(string name, int attack_power, int spell_power, int hp, double Offensive_Stance) :base(name,attack_power,spell_power,hp)
+        Random random = new Random();
+        public Sith(string name, int attack_power, int spell_power, int hp, int Offensive_Stance) :base(name,attack_power,spell_power,hp)
         {
-
+            
             this.Offensive_Stance = Offensive_Stance;
         }
 
-        public double Offensive_Stance { get; private set; }
-
+        public Character opponent { get; set; }
+        public int Offensive_Stance { get; set; }
 
         public string Attack_Move()
         {
-            return "x";
+            int dmg = random.Next(0, Attack_Power);
+            opponent.HP = opponent.HP - dmg -Offensive_Stance ;
+            
+
+            return Name + " wykonał cięcie mieczem świetlnym zadając " + dmg + " obrażeń. Dodatkowo zadał " + Offensive_Stance + " obrażeń pasywnie.\n" ;
         }
 
-        public string Force_Push()
+        public string Force_Lightning()
         {
-            return "x";
+            int dmg = random.Next(0, Spell_Power);
+            opponent.HP = opponent.HP - dmg ;
+
+            return Name + " użył błyskawicy mocy " + dmg + " obrażeń.\n";
         }
+
     }
 }
