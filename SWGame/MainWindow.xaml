@@ -31,6 +31,8 @@
         <Button x:Name="player1Character" Content="Player 1" Grid.Column="1" HorizontalAlignment="Left" Margin="34,78,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="player1Character_Click"/>
         <Button x:Name="player2Character" Content="Player 2" Grid.Column="1" HorizontalAlignment="Left" Margin="265,78,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="player2Character_Click"/>
         <Button x:Name="playButton" Content="PLAY !" Grid.Column="1" HorizontalAlignment="Left" Margin="150,125,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="playButton_Click"/>
+        <Button x:Name ="endTurnButton" Content="End your turn!" Grid.Column="1" HorizontalAlignment="Left" Margin="34,100,0,0" Grid.Row="1" VerticalAlignment="Top" Width="306" Click="endTurnButton_Click"/>
+        <Label x:Name="Labeltest" Content="Label" HorizontalAlignment="Left" Margin="91,127,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

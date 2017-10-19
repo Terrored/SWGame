@@ -21,12 +21,12 @@ namespace SWGame
     /// </summary>
     public partial class MainWindow : Window
     {
-        //Opponent newOpponent = new Opponent(100);
+       
         
         Character player1;
         Character player2;
-        
-        
+
+        int turnNr;
         string description = "";
 
         public MainWindow()
@@ -37,15 +37,16 @@ namespace SWGame
             player2Attack.Visibility = Visibility.Hidden;
             player1Spell.Visibility = Visibility.Hidden;
             player2Spell.Visibility = Visibility.Hidden;
+            endTurnButton.Visibility = Visibility.Hidden;
 
 
 
 
             List<Character> chars = new List<Character>()
             {
-                new Sith("Kylo Ren",20,30,100,10),
-                new Jedi("Anakin Skywalker", 30, 25, 100, 10),
-                new Jedi("Obi-Wan Kenobi", 30, 25, 100, 10),
+                new Sith("Kylo Ren",20,30,100,false,10),
+                new Jedi("Anakin Skywalker", 30, 25, 100,false, 10),
+                new Jedi("Obi-Wan Kenobi", 30, 25, 100, false,10),
             };
 
             listBoxOfCharacters.ItemsSource = chars;
@@ -61,37 +62,59 @@ namespace SWGame
 
         private void player1Attack_Click(object sender, RoutedEventArgs e)
         {
-            description += player1.Attack_Move().ToString();
-            UpdateLabels();
-            WinCondition();
+            if (turnNr == 1 && player1.Turn == true)
+            {
+                description += player1.Attack_Move().ToString();
+                player1.Turn = false;
+                WinCondition();
+                
+                
+            }
+            else MessageBox.Show("Wykonałeś swój ruch zakończ turę");
             
         }
 
         private void player1Spell_Click(object sender, RoutedEventArgs e)
         {
-            description += player1.Force();
-            UpdateLabels();
-            WinCondition();
+            if (turnNr==1&& player1.Turn == true)
+            {
+                description += player1.Force();
+                player1.Turn = false;
+                WinCondition();
+               
+            }
+            else MessageBox.Show("Wykonałeś swój ruch zakończ turę");
         }
         private void player2Attack_Click(object sender, RoutedEventArgs e)
         {
-            description += player2.Attack_Move();
-            UpdateLabels();
-            WinCondition();
-            
-            
+            if (turnNr==2 && player2.Turn == true)
+            {
+                description += player2.Attack_Move();
+                player2.Turn = false;
+                WinCondition();
+                
+            }
+            else MessageBox.Show("Wykonałeś swój ruch zakończ turę");
+
+
         }
 
         private void player2Spell_Click(object sender, RoutedEventArgs e)
         {
-           description += player2.Force();
-           UpdateLabels();
-           WinCondition();
+            if (turnNr== 2 && player2.Turn == true)
+            {
+                description += player2.Force();
+                player2.Turn = false;
+                WinCondition();
+                
+            }
+            else MessageBox.Show("Wykonałeś swój ruch zakończ turę");
         }
 
         private void UpdateLabels()
         {
             descriptionBox.Text = description;
+            Labeltest.Content = turnNr;
             
            
         }
@@ -124,7 +147,7 @@ namespace SWGame
             playButton.Visibility = Visibility.Visible;
 
             player1Name.Content = "";
-            player1Name.Content = "";
+            player2Name.Content = "";
 
             player1 = null;
             player2 = null;
@@ -142,7 +165,7 @@ namespace SWGame
                 MessageBox.Show("Wygrał " + player1.Name);
                 RestartGame();
             }
-
+            UpdateLabels();
 
         }
 
@@ -156,6 +179,31 @@ namespace SWGame
             player1Spell.Visibility = Visibility.Visible;
             player2Spell.Visibility = Visibility.Visible;
             playButton.Visibility = Visibility.Hidden;
+            endTurnButton.Visibility = Visibility.Visible;
+            turnNr = 1;
+            player1.Turn = true;
+
+            UpdateLabels();
+        }
+
+        private void endTurnButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(turnNr==1)
+            {
+                turnNr = 2;
+                description += "TURA " + player2.Name + "\n";
+                UpdateLabels();
+                player2.Turn = true;
+            }
+            else if(turnNr == 2)
+            {
+                turnNr = 1;
+                description += "TURA " + player1.Name + "\n";
+                UpdateLabels();
+                player1.Turn = true;
+            }
+
+
         }
     }
 }

@@ -10,7 +10,7 @@ namespace SWGame
     {
         
         Random random = new Random();
-        public Jedi (string name, int attack_power, int spell_power, int hp, int Defensive_Stance) :base(name,attack_power,spell_power,hp)
+        public Jedi (string name, int attack_power, int spell_power, int hp,bool turn, int Defensive_Stance) :base(name,attack_power,spell_power,hp,turn)
         {
 
             

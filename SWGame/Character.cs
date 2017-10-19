@@ -15,12 +15,15 @@ namespace SWGame
 
         public int HP { get;  set; }
 
-        public Character(string name , int attack_power, int spell_power, int hp)
+        public bool Turn { get; set; }
+
+        public Character(string name , int attack_power, int spell_power, int hp,bool turn)
         {
             Name = name;
             Attack_Power = attack_power;
             Spell_Power = spell_power;
             HP = hp;
+            Turn = turn;
         }
 
         abstract public string Attack_Move();
