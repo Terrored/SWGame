@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -26,6 +27,9 @@ namespace SWGame
         Character player1;
         Character player2;
 
+        
+        
+
         int turnNr;
         string description = "";
 
@@ -40,13 +44,14 @@ namespace SWGame
             endTurnButton.Visibility = Visibility.Hidden;
 
 
+           player1Image.Source = pack://siteoforigin:,,,/Resources/kylo.png"
 
 
             List<Character> chars = new List<Character>()
             {
-                new Sith("Kylo Ren",20,30,100,false,10),
-                new Jedi("Anakin Skywalker", 30, 25, 100,false, 10),
-                new Jedi("Obi-Wan Kenobi", 30, 25, 100, false,10),
+                new Sith("Kylo Ren",20,30,100,false,SWGame.Properties.Resources.kylo,20),
+                new Jedi("Anakin Skywalker", 30, 25, 100,false,SWGame.Properties.Resources.anakin, 10),
+                new Jedi("Obi-Wan Kenobi", 30, 25, 100, false,SWGame.Properties.Resources.kylo,50),
             };
 
             listBoxOfCharacters.ItemsSource = chars;
@@ -114,7 +119,7 @@ namespace SWGame
         private void UpdateLabels()
         {
             descriptionBox.Text = description;
-            Labeltest.Content = turnNr;
+            
             
            
         }
@@ -126,6 +131,7 @@ namespace SWGame
             player1 = (Character)listBoxOfCharacters.SelectedItem;
             
             player1Name.Content = player1.Name;
+            player1Image = player1.Image;
 
 
 
@@ -145,6 +151,10 @@ namespace SWGame
             player1Spell.Visibility = Visibility.Hidden;
             player2Spell.Visibility = Visibility.Hidden;
             playButton.Visibility = Visibility.Visible;
+            endTurnButton.Visibility = Visibility.Hidden;
+            listBoxOfCharacters.Visibility = Visibility.Visible;
+            player1Character.Visibility = Visibility.Visible;
+            player2Character.Visibility = Visibility.Visible;
 
             player1Name.Content = "";
             player2Name.Content = "";
@@ -166,24 +176,34 @@ namespace SWGame
                 RestartGame();
             }
             UpdateLabels();
+            
 
         }
 
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
-            player2.opponent = player1;
-            player1.opponent = player2;
+            if (player1 != null && player2 != null)
+            {
+                player2.opponent = player1;
+                player1.opponent = player2;
 
-            player1Attack.Visibility = Visibility.Visible;
-            player2Attack.Visibility = Visibility.Visible;
-            player1Spell.Visibility = Visibility.Visible;
-            player2Spell.Visibility = Visibility.Visible;
-            playButton.Visibility = Visibility.Hidden;
-            endTurnButton.Visibility = Visibility.Visible;
-            turnNr = 1;
-            player1.Turn = true;
+                player1Attack.Visibility = Visibility.Visible;
+                player2Attack.Visibility = Visibility.Visible;
+                player1Spell.Visibility = Visibility.Visible;
+                player2Spell.Visibility = Visibility.Visible;
+                playButton.Visibility = Visibility.Hidden;
+                player1Character.Visibility = Visibility.Hidden;
+                player2Character.Visibility = Visibility.Hidden;
+                listBoxOfCharacters.Visibility = Visibility.Hidden;
+                endTurnButton.Visibility = Visibility.Visible;
 
-            UpdateLabels();
+                turnNr = 1;
+                player1.Turn = true;
+
+                UpdateLabels();
+            }
+            else MessageBox.Show("Wybierz postacie !");
+
         }
 
         private void endTurnButton_Click(object sender, RoutedEventArgs e)

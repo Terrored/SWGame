@@ -16,7 +16,7 @@
             <ColumnDefinition Width="199*"/>
             <ColumnDefinition Width="120*"/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="player1Image" HorizontalAlignment="Left" Height="357" VerticalAlignment="Top" Width="230"/>
+        <Image x:Name="player1Image" HorizontalAlignment="Left" Height="357" VerticalAlignment="Top" Width="230" Source="pack://siteoforigin:,,,/Resources/kylo.png"/>
         <Image x:Name="player2Image" HorizontalAlignment="Left" Height="357" VerticalAlignment="Top" Width="230" Grid.Column="2"/>
         <Label x:Name="player1Name" Content="Label" HorizontalAlignment="Left" Margin="91,344,0,0" VerticalAlignment="Top"/>
         <Label x:Name="player2Name" Content="Label" HorizontalAlignment="Left" Margin="91,352,0,0" VerticalAlignment="Top" Grid.Column="2" RenderTransformOrigin="0.488,0.486"/>
@@ -32,7 +32,6 @@
         <Button x:Name="player2Character" Content="Player 2" Grid.Column="1" HorizontalAlignment="Left" Margin="265,78,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="player2Character_Click"/>
         <Button x:Name="playButton" Content="PLAY !" Grid.Column="1" HorizontalAlignment="Left" Margin="150,125,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="playButton_Click"/>
         <Button x:Name ="endTurnButton" Content="End your turn!" Grid.Column="1" HorizontalAlignment="Left" Margin="34,100,0,0" Grid.Row="1" VerticalAlignment="Top" Width="306" Click="endTurnButton_Click"/>
-        <Label x:Name="Labeltest" Content="Label" HorizontalAlignment="Left" Margin="91,127,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
