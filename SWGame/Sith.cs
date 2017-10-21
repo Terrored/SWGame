@@ -22,7 +22,7 @@ namespace SWGame
         public override string  Attack_Move()
         {
             
-                int dmg = random.Next(0, Attack_Power);
+                int dmg = random.Next(50, Attack_Power);
                 opponent.HP = opponent.HP - dmg - Offensive_Stance;
 
             if (opponent.HP <= 0)
@@ -34,7 +34,7 @@ namespace SWGame
 
         public override string Force()
         {
-            int dmg = random.Next(0, Spell_Power);
+            int dmg = random.Next(50, Spell_Power);
             opponent.HP = opponent.HP - dmg ;
             if (opponent.HP <= 0)
             {
