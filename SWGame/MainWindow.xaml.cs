@@ -59,7 +59,7 @@ namespace SWGame
 
              List <Character> chars = new List<Character>()
             {
-                new Sith("Kylo Ren",20,30,100,false,new Uri("pack://application:,,,/Images/kylo.png", UriKind.Absolute),20),
+                new Sith("Kylo Ren",20,30,1300,false,new Uri("pack://application:,,,/Images/kylo.png", UriKind.Absolute),20),
                 new Jedi("Anakin Skywalker", 30, 25, 100,false,new Uri("pack://application:,,,/Images/anakin.png",UriKind.Absolute), 10),
                 //new Jedi("Obi-Wan Kenobi", 30, 25, 100, false,SWGame.Properties.Resources.kylo,50),
             };
@@ -247,8 +247,21 @@ namespace SWGame
                 player1ProgressBarText.Visibility = Visibility.Visible;
                 player2ProgressBarText.Visibility = Visibility.Visible;
 
-                turnNr = 1;
-                player1.Turn = true;
+                Random random = new Random();
+                int firstTurn = random.Next(1, 3);
+                if (firstTurn == 1)
+                {
+                    player1.Turn = true;
+                    description = player1.Name + " STARTS !";
+                }
+                else if (firstTurn == 2)
+                {
+                    player2.Turn = true;
+                    description = player2.Name + " STARTS !";
+                }
+
+
+
 
                 UpdateLabels();
                 UpdateHPBar(player1HP, player1, player1ProgressBarText);
