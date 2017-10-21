@@ -10,7 +10,7 @@ namespace SWGame
     class Sith:Character
     {
         Random random = new Random();
-        public Sith(string name, int attack_power, int spell_power, int hp,bool turn, System.Windows.Controls.Image image, int Offensive_Stance) :base(name,attack_power,spell_power,hp,turn,image)
+        public Sith(string name, int attack_power, int spell_power, int hp,bool turn, Uri uri, int Offensive_Stance) :base(name,attack_power,spell_power,hp,turn,uri)
         {
             
             this.Offensive_Stance = Offensive_Stance;

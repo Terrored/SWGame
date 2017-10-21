@@ -10,7 +10,7 @@ namespace SWGame
     {
         
         Random random = new Random();
-        public Jedi (string name, int attack_power, int spell_power, int hp,bool turn, System.Windows.Controls.Image image, int Defensive_Stance) :base(name,attack_power,spell_power,hp,turn,image)
+        public Jedi (string name, int attack_power, int spell_power, int hp,bool turn, Uri uri, int Defensive_Stance) :base(name,attack_power,spell_power,hp,turn,uri)
         {
 
             

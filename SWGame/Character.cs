@@ -16,23 +16,30 @@ namespace SWGame
 
         public int HP { get;  set; }
 
+        public int MaxHP { get; set; }
+
         public bool Turn { get; set; }
 
-        public System.Windows.Controls.Image Image { get; set; }
+        public Uri Uri { get; set; }
 
-        public Character(string name, int attack_power, int spell_power, int hp, bool turn, System.Windows.Controls.Image image)
+        
+        public Character(string name, int attack_power, int spell_power, int hp, bool turn, Uri uri)
         {
             Name = name;
             Attack_Power = attack_power;
             Spell_Power = spell_power;
             HP = hp;
             Turn = turn;
-            Image = image;
+            Uri = uri;
+            
+            
         }
 
         abstract public string Attack_Move();
         abstract public string Force();
         public Character opponent { get; set; }
+
+
 
 
 
