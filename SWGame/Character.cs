@@ -22,7 +22,9 @@ namespace SWGame
 
         public Uri Uri { get; set; }
 
-        
+        public Character opponent { get; set; }
+
+
         public Character(string name, int attack_power, int spell_power, int hp, bool turn, Uri uri)
         {
             Name = name;
@@ -37,7 +39,7 @@ namespace SWGame
 
         abstract public string Attack_Move();
         abstract public string Force();
-        public Character opponent { get; set; }
+        
 
 
 

@@ -26,10 +26,7 @@ namespace SWGame
         
         Character player1;
         Character player2;
-
-
-
-
+                        
         int turnNr;
         string description = "";
 
@@ -37,26 +34,14 @@ namespace SWGame
         {
             InitializeComponent();
             descriptionBox.Text = "";
-            player1Attack.Visibility = Visibility.Hidden;
-            player2Attack.Visibility = Visibility.Hidden;
-            player1Spell.Visibility = Visibility.Hidden;
-            player2Spell.Visibility = Visibility.Hidden;
-            endTurnButton.Visibility = Visibility.Hidden;
-            player1HP.Visibility = Visibility.Hidden;
-            player2HP.Visibility = Visibility.Hidden;
-            player1ProgressBarText.Visibility = Visibility.Hidden;
-            player2ProgressBarText.Visibility = Visibility.Hidden;
 
+            StartLabels();
 
 
             descriptionBox.Text = "Welcome! \n Choose yours characters and begin the fight! \n I hope You like it. " +
                 "It 's my first project from the scratch using WPF and C# . \n \n\n\n ENJOY !";
           
-
-
-
-
-
+                        
              List <Character> chars = new List<Character>()
             {
                 new Sith("Kylo Ren",120,95,1300,false,new Uri("pack://application:,,,/Images/kylo.png", UriKind.Absolute),20),
@@ -67,16 +52,11 @@ namespace SWGame
 
             
             listBoxOfCharacters.ItemsSource = chars;
-
-
-           
-
-
-
+                                 
 
 
         }
-
+       
         private void player1Attack_Click(object sender, RoutedEventArgs e)
         {
             if (turnNr == 1 && player1.Turn == true)
@@ -133,17 +113,7 @@ namespace SWGame
             else MessageBox.Show("End turn !");
         }
 
-        private void UpdateLabels()
-        {
-            
-            descriptionBox.AppendText(description);
-            descriptionBox.SelectionStart = descriptionBox.Text.Length;
-            descriptionBox.ScrollToEnd();
-
-
-
-        }
-
+       
         private void player1Character_Click(object sender, RoutedEventArgs e)
         {
             
@@ -178,21 +148,8 @@ namespace SWGame
         }
         private void RestartGame()
         {
-            player1Attack.Visibility = Visibility.Hidden;
-            player2Attack.Visibility = Visibility.Hidden;
-            player1Spell.Visibility = Visibility.Hidden;
-            player2Spell.Visibility = Visibility.Hidden;
-            playButton.Visibility = Visibility.Visible;
-            endTurnButton.Visibility = Visibility.Hidden;
-            player1HP.Visibility = Visibility.Hidden;
-            player2HP.Visibility = Visibility.Hidden;
-
-            player1ProgressBarText.Visibility = Visibility.Hidden;
-            player2ProgressBarText.Visibility = Visibility.Hidden;
-
-            listBoxOfCharacters.Visibility = Visibility.Visible;
-            player1Character.Visibility = Visibility.Visible;
-            player2Character.Visibility = Visibility.Visible;
+            RestartGameLabels();
+            
 
             player1Name.Content = "";
             player2Name.Content = "";
@@ -204,6 +161,9 @@ namespace SWGame
             player2 = null;
             descriptionBox.Text = "";
         }
+
+        
+
         private void WinCondition()
         {
             if (player1.HP <= 0)
@@ -216,11 +176,9 @@ namespace SWGame
                 MessageBox.Show("Wygrał " + player1.Name);
                 RestartGame();
             }
-            
-
-            UpdateLabels();
-
-            
+           
+            UpdateDescriptionBox();
+                     
 
         }
 
@@ -228,36 +186,25 @@ namespace SWGame
         {
             if (player1 != null && player2 != null)
             {
+                PlayGameLabels();
                 descriptionBox.Text = "";
                 player2.opponent = player1;
                 player1.opponent = player2;
                 player2.MaxHP = player2.HP;
                 player1.MaxHP = player1.HP;
-                player1Attack.Visibility = Visibility.Visible;
-                player2Attack.Visibility = Visibility.Visible;
-                player1Spell.Visibility = Visibility.Visible;
-                player2Spell.Visibility = Visibility.Visible;
-                playButton.Visibility = Visibility.Hidden;
-                player1Character.Visibility = Visibility.Hidden;
-                player2Character.Visibility = Visibility.Hidden;
-                listBoxOfCharacters.Visibility = Visibility.Hidden;
-                endTurnButton.Visibility = Visibility.Visible;
-                player1HP.Visibility = Visibility.Visible;
-                player2HP.Visibility = Visibility.Visible;
-                player1ProgressBarText.Visibility = Visibility.Visible;
-                player2ProgressBarText.Visibility = Visibility.Visible;
+                
 
                 Random random = new Random();
-                int firstTurn = random.Next(1, 3);
-                if (firstTurn == 1)
+                turnNr = random.Next(1, 3);
+                if (turnNr == 1)
                 {
-                    turnNr = 1;
+                    
                     player1.Turn = true;
                     description = player1.Name + " STARTS ! \n";
                 }
-                else if (firstTurn == 2)
+                else if (turnNr == 2)
                 {
-                    turnNr = 2;
+                    
                     player2.Turn = true;
                     description = player2.Name + " STARTS ! \n";
                 }
@@ -265,7 +212,7 @@ namespace SWGame
 
 
 
-                UpdateLabels();
+                UpdateDescriptionBox();
                 UpdateHPBar(player1HP, player1, player1ProgressBarText);
                 UpdateHPBar(player2HP, player2, player2ProgressBarText);
             }
@@ -280,14 +227,14 @@ namespace SWGame
             {
                 turnNr = 2;
                 description = "TURA " + player2.Name + "\n";
-                UpdateLabels();
+                UpdateDescriptionBox();
                 player2.Turn = true;
             }
             else if(turnNr == 2)
             {
                 turnNr = 1;
                 description = "TURA " + player1.Name + "\n";
-                UpdateLabels();
+                UpdateDescriptionBox();
                 player1.Turn = true;
             }
 
@@ -309,6 +256,65 @@ namespace SWGame
             else text.Content = "";
             hpbar.Value = val;
             
+        }
+
+        private void StartLabels()
+        {
+            player1Attack.Visibility = Visibility.Hidden;
+            player2Attack.Visibility = Visibility.Hidden;
+            player1Spell.Visibility = Visibility.Hidden;
+            player2Spell.Visibility = Visibility.Hidden;
+            endTurnButton.Visibility = Visibility.Hidden;
+            player1HP.Visibility = Visibility.Hidden;
+            player2HP.Visibility = Visibility.Hidden;
+            player1ProgressBarText.Visibility = Visibility.Hidden;
+            player2ProgressBarText.Visibility = Visibility.Hidden;
+        }
+        private void RestartGameLabels()
+        {
+            player1Attack.Visibility = Visibility.Hidden;
+            player2Attack.Visibility = Visibility.Hidden;
+            player1Spell.Visibility = Visibility.Hidden;
+            player2Spell.Visibility = Visibility.Hidden;
+            playButton.Visibility = Visibility.Visible;
+            endTurnButton.Visibility = Visibility.Hidden;
+            player1HP.Visibility = Visibility.Hidden;
+            player2HP.Visibility = Visibility.Hidden;
+
+            player1ProgressBarText.Visibility = Visibility.Hidden;
+            player2ProgressBarText.Visibility = Visibility.Hidden;
+
+            listBoxOfCharacters.Visibility = Visibility.Visible;
+            player1Character.Visibility = Visibility.Visible;
+            player2Character.Visibility = Visibility.Visible;
+        }
+
+        private void PlayGameLabels()
+        {
+            player1Attack.Visibility = Visibility.Visible;
+            player2Attack.Visibility = Visibility.Visible;
+            player1Spell.Visibility = Visibility.Visible;
+            player2Spell.Visibility = Visibility.Visible;
+            playButton.Visibility = Visibility.Hidden;
+            player1Character.Visibility = Visibility.Hidden;
+            player2Character.Visibility = Visibility.Hidden;
+            listBoxOfCharacters.Visibility = Visibility.Hidden;
+            endTurnButton.Visibility = Visibility.Visible;
+            player1HP.Visibility = Visibility.Visible;
+            player2HP.Visibility = Visibility.Visible;
+            player1ProgressBarText.Visibility = Visibility.Visible;
+            player2ProgressBarText.Visibility = Visibility.Visible;
+        }
+
+        private void UpdateDescriptionBox()
+        {
+
+            descriptionBox.AppendText(description);
+            descriptionBox.SelectionStart = descriptionBox.Text.Length;
+            descriptionBox.ScrollToEnd();
+
+
+
         }
     }
 }

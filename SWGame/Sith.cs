@@ -16,7 +16,7 @@ namespace SWGame
             this.Offensive_Stance = Offensive_Stance;
         }
 
-       // public Character opponent { get; set; }
+       
         public int Offensive_Stance { get; set; }
 
         public override string  Attack_Move()

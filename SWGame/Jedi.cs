@@ -17,7 +17,7 @@ namespace SWGame
             this.Defensive_Stance = Defensive_Stance;
         }
 
-        //public Character opponent;
+       
         
 
         public int Defensive_Stance { get; set; }
