@@ -9,7 +9,7 @@
     <Window.Background>
         <ImageBrush ImageSource="/Images/sky.jpg"/>
     </Window.Background>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="389*"/>
@@ -20,10 +20,10 @@
             <ColumnDefinition Width="199*"/>
             <ColumnDefinition Width="120*"/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="player1Image" Margin="10,10,10,10" HorizontalAlignment="Left" Height="357" VerticalAlignment="Top" Width="230"/>
-        <Image x:Name="player2Image" Margin="10,10,10,10" HorizontalAlignment="Left" Height="357" VerticalAlignment="Top" Width="230" Grid.Column="2" />
-        <Label x:Name="player1Name" Content="?" Margin="0,344,0,0" FontFamily="Tekton Pro" FontSize="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="Gold"/>
-        <Label x:Name="player2Name" Content="?" Margin="0,344,0,0" Grid.Column="2" RenderTransformOrigin="0.488,0.486" FontFamily="Tekton Pro" FontSize="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="Gold"/>
+        <Image x:Name="player1Image" Margin="10,10,373,0" Height="357" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Image x:Name="player2Image" Margin="372,10,0,0" HorizontalAlignment="Left" Height="357" VerticalAlignment="Top" Width="242" Grid.Column="1" Grid.ColumnSpan="2" />
+        <Label x:Name="player1Name" Content="?" Margin="0,357,0,165" FontFamily="Tekton Pro" FontSize="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="Gold" Grid.RowSpan="2"/>
+        <Label x:Name="player2Name" Content="?" Margin="0,357,0,165" Grid.Column="2" RenderTransformOrigin="0.488,0.486" FontFamily="Tekton Pro" FontSize="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="Gold" Grid.RowSpan="2"/>
         <TextBox x:Name="descriptionBox" BorderBrush="Gold" Background="Black" Foreground="Gold" Grid.Column="1" HorizontalAlignment="Center" Height="369" Margin="10,10,10,10" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="362" FontFamily="Tw Cen MT" FontSize="18" HorizontalContentAlignment="Center"  VerticalScrollBarVisibility="Auto" 
          AcceptsReturn="True"/>
         <ProgressBar x:Name="player1HP" Background="Black" HorizontalAlignment="Left" Height="20" Margin="25,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="175" />

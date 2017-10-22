@@ -10,7 +10,7 @@ namespace SWGame
     {
         
         Random random = new Random();
-        public Jedi (string name, int attack_power, int spell_power, int hp,bool turn, Uri uri, int Defensive_Stance) :base(name,attack_power,spell_power,hp,turn,uri)
+        public Jedi (string name, int attack_power, int maxattack_power, int spell_power, int maxspell_power, int hp, bool turn, Uri uri, int Defensive_Stance) :base(name, attack_power, maxattack_power, spell_power, maxspell_power, hp, turn, uri)
         {
 
             
@@ -26,25 +26,25 @@ namespace SWGame
 
         public override string Attack_Move()
         {
-            int dmg = random.Next(50, Attack_Power);
+            int dmg = random.Next(Attack_Power, MaxAttack_Power);
             opponent.HP = opponent.HP - dmg;
             if (opponent.HP <= 0)
             {
-                return Name + " zadał konczące uderzenie mieczem świetlnym zadając " + dmg + " obrażeń oraz zabijając " + opponent.Name + ".\n";
+                return Name + " killed " + opponent.Name + " with his lightsaber dealing "  +dmg + " damage .\n";
             }
-            return Name + " wykonał cięcie mieczem świetlnym zadając " + dmg + " obrażeń. \n";
+            return  Name + " swinged his lightsaber and dealt " + dmg + " damage. \n";
         }
 
         public override string Force()
         {
-            int dmg = random.Next(50, Spell_Power);
+            int dmg = random.Next(Spell_Power, MaxSpell_Power);
             opponent.HP = opponent.HP - dmg - Defensive_Stance;
             if (opponent.HP <= 0)
             {
-                return Name + " zadał konczące uderzenie pchnięciem mocy zadając  " + dmg + " obrażeń oraz zabijając " + opponent.Name+".\n";
+                return Name + " killed " + opponent.Name + " with force push dealing " + (dmg+Defensive_Stance) + " damage .\n";
             }
 
-            return Name + " wykonał pchięcie mocą zadając " + dmg + " obrażeń. Pasywnie zadał "+Defensive_Stance+" dodatkowych obrażeń.\n";
+            return Name + " used force lightning and dealt " + dmg + " damage. He also dealt additional " + Defensive_Stance +" damage from his passive ability.\n";
         }
         public override string ToString()
         {

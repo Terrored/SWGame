@@ -99,11 +99,24 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\anakin.png" />
-    <Resource Include="Images\kylo.png" />
+    <Resource Include="Images\sky.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\sky.jpg" />
+    <Resource Include="Images\AnSky.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AsVen.png" />
+    <Resource Include="Images\CoDoo.png" />
+    <Resource Include="Images\DarMalg.png" />
+    <Resource Include="Images\DarMaul.png" />
+    <Resource Include="Images\DarNih.png" />
+    <Resource Include="Images\DarRev.png" />
+    <Resource Include="Images\DarSid.png" />
+    <Resource Include="Images\DarVad.png" />
+    <Resource Include="Images\GenGr.png" />
+    <Resource Include="Images\KyloRen.png" />
+    <Resource Include="Images\ObiWan.png" />
+    <Resource Include="Images\Yoda.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

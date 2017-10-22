@@ -39,14 +39,26 @@ namespace SWGame
 
 
             descriptionBox.Text = "Welcome! \n Choose yours characters and begin the fight! \n I hope You like it. " +
-                "It 's my first project from the scratch using WPF and C# . \n \n\n\n ENJOY !";
+                "It 's my first bigger project from the scratch using WPF and C# . \n \n\n\n ENJOY ! \n\n\n Special thanks to anonymous graphics designer :) ";
           
                         
              List <Character> chars = new List<Character>()
             {
-                new Sith("Kylo Ren",120,95,1300,false,new Uri("pack://application:,,,/Images/kylo.png", UriKind.Absolute),20),
-                new Jedi("Anakin Skywalker", 140, 75, 1150,false,new Uri("pack://application:,,,/Images/anakin.png",UriKind.Absolute), 20),
-                //new Jedi("Obi-Wan Kenobi", 30, 25, 100, false,SWGame.Properties.Resources.kylo,50),
+                new Sith("Kylo Ren"        ,50,120,60,80,1500,false,new Uri("pack://application:,,,/Images/KyloRen.png", UriKind.Absolute),25),
+                new Sith("Asajj Ventress"  ,80,150,60,120,800,false,new Uri("pack://application:,,,/Images/AsVen.png", UriKind.Absolute),10),
+                new Sith("Darth Vader"     ,70,130,20,30,2000,false,new Uri("pack://application:,,,/Images/DarVad.png", UriKind.Absolute),15),
+                new Sith("Darth Malgus"    ,70,75,70,75,2500,false,new Uri("pack://application:,,,/Images/DarMalg.png", UriKind.Absolute),10),
+                new Sith("Darth Nihilus"   ,40,100,95,100,1600,false,new Uri("pack://application:,,,/Images/DarNih.png", UriKind.Absolute),15),
+                new Sith("Darth Maul"      ,100,170,45,55,900,false,new Uri("pack://application:,,,/Images/DarMaul.png", UriKind.Absolute),15),
+                new Sith("Darth Revan"     ,40,110,85,105,1500,false,new Uri("pack://application:,,,/Images/DarRev.png", UriKind.Absolute),20),
+                new Sith("Count Dooku"     ,50,120,55,95,1500,false,new Uri("pack://application:,,,/Images/CoDoo.png", UriKind.Absolute),25),
+                new Sith("Darth Sidious"   ,60,75,120,200,1000,false,new Uri("pack://application:,,,/Images/DarSid.png", UriKind.Absolute),5),
+                new Sith("General Grevious",110,120,0,0,1300,false,new Uri("pack://application:,,,/Images/GenGr.png", UriKind.Absolute),10),
+
+                new Jedi("Anakin Skywalker",80,140,50,60,1250,false,new Uri("pack://application:,,,/Images/AnSky.png",UriKind.Absolute), 15),
+                new Jedi("Yoda"            ,120,180,130,200,550,false,new Uri("pack://application:,,,/Images/Yoda.png",UriKind.Absolute), 25),
+                new Jedi("Obi-Wan Kenobi"  ,30,120,75,110,1350,false,new Uri("pack://application:,,,/Images/ObiWan.png",UriKind.Absolute), 15),
+
             };
 
 
@@ -168,12 +180,12 @@ namespace SWGame
         {
             if (player1.HP <= 0)
             {
-                MessageBox.Show("Wygrał " + player2.Name);
+                MessageBox.Show(player2.Name + " WINS !");
                 RestartGame();
             }
             else if (player2.HP <= 0)
             {
-                MessageBox.Show("Wygrał " + player1.Name);
+                MessageBox.Show(player1.Name + " WINS !");
                 RestartGame();
             }
            
@@ -216,7 +228,7 @@ namespace SWGame
                 UpdateHPBar(player1HP, player1, player1ProgressBarText);
                 UpdateHPBar(player2HP, player2, player2ProgressBarText);
             }
-            else MessageBox.Show("Wybierz postacie !");
+            else MessageBox.Show("Choose characters !");
 
         }
 
@@ -226,14 +238,14 @@ namespace SWGame
             if (turnNr==1)
             {
                 turnNr = 2;
-                description = "TURA " + player2.Name + "\n";
+                description = player2.Name + "'s turn !\n";
                 UpdateDescriptionBox();
                 player2.Turn = true;
             }
             else if(turnNr == 2)
             {
                 turnNr = 1;
-                description = "TURA " + player1.Name + "\n";
+                description = player1.Name + "'s turn !\n";
                 UpdateDescriptionBox();
                 player1.Turn = true;
             }
