@@ -44,7 +44,7 @@ namespace SWGame
                 return Name + " killed " + opponent.Name + " with force push dealing " + (dmg+Defensive_Stance) + " damage .\n";
             }
 
-            return Name + " used force lightning and dealt " + dmg + " damage. He also dealt additional " + Defensive_Stance +" damage from his passive ability.\n";
+            return Name + " used force push and dealt " + dmg + " damage. He also dealt additional " + Defensive_Stance +" damage from his passive ability.\n";
         }
         public override string ToString()
         {

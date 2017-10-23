@@ -86,11 +86,11 @@ namespace SWGame
 
         private void player1Spell_Click(object sender, RoutedEventArgs e)
         {
-            if (turnNr==1&& player1.Turn == true)
+            if (turnNr == 1 && player1.Turn == true)
             {
                 description = player1.Force();
                 player1.Turn = false;
-                UpdateHPBar(player2HP, player2,player1ProgressBarText);
+                UpdateHPBar(player2HP, player2,player2ProgressBarText);
                 WinCondition();
                
             }
