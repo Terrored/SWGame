@@ -35,10 +35,12 @@
         <ListBox x:Name="listBoxOfCharacters" BorderBrush="Gold" Foreground="Gold" Background="Black" Grid.Column="1" HorizontalAlignment="Left" Height="70" Margin="34,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="306" IsSynchronizedWithCurrentItem="False" SelectedIndex="0"/>
         <Button x:Name="player1Character" BorderBrush="Gold" Foreground="Gold" Background="Black" FontFamily="Tw Cen MT" Content="Player 1" Grid.Column="1" HorizontalAlignment="Left" Margin="34,93,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="player1Character_Click"/>
         <Button x:Name="player2Character" BorderBrush="Gold" Foreground="Gold" Background="Black" FontFamily="Tw Cen MT" Content="Player 2" Grid.Column="1" HorizontalAlignment="Left" Margin="265,93,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="player2Character_Click"/>
-        <Button x:Name="playButton" BorderBrush="Gold" Foreground="Gold" Background="Black" Content="PLAY !" FontFamily="Tw Cen MT" Grid.Column="1" HorizontalAlignment="Left" Margin="150,140,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="playButton_Click"/>
+        <Button x:Name="playButton" BorderBrush="Gold" Foreground="Gold" Background="Black" Content="PLAY !" FontFamily="Tw Cen MT" Grid.Column="1" HorizontalAlignment="Left" Margin="34,142,0,0" Grid.Row="1" VerticalAlignment="Top" Width="141" Click="playButton_Click"/>
         <Button x:Name ="endTurnButton" BorderBrush="Gold" Foreground="Gold" Background="Black" FontFamily="Tw Cen MT" Content="End your turn!" Grid.Column="1" HorizontalAlignment="Left" Margin="34,115,0,0" Grid.Row="1" VerticalAlignment="Top" Width="306" Click="endTurnButton_Click"/>
         <Label x:Name="player2ProgressBarText"  Foreground="Gold" Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="80,8,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Tw Cen MT" FontSize="14"/>
         <Label x:Name="player1ProgressBarText" Foreground="Gold" Content="Label" HorizontalAlignment="Left" Margin="80,9,0,0" VerticalAlignment="Top" Grid.Row="1" RenderTransformOrigin="1.401,2.308" FontFamily="Tw Cen MT" FontSize="14"/>
+        <Button x:Name="Play2PlayersButton" BorderBrush="Gold" Foreground="Gold" Background="Black"  FontFamily="Tw Cen MT"  Content="PLAY VS COM!" Grid.Column="1" HorizontalAlignment="Left" Margin="200,142,0,0" Grid.Row="1" VerticalAlignment="Top" Width="140" Click="Play2PlayersButton_Click"/>
+        <Button x:Name="EndTurnButtonBot"  Content="End your turn !" BorderBrush="Gold" Foreground="Gold" Background="Black" FontFamily="Tw Cen MT" Grid.Column="1" HorizontalAlignment="Left" Margin="34,115,0,0" Grid.Row="1" VerticalAlignment="Top" Width="306" Click="EndTurnButtonBot_Click" />
 
     </Grid>
 </Window>

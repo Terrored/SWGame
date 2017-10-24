@@ -26,6 +26,7 @@ namespace SWGame
         
         Character player1;
         Character player2;
+        Character bot;
                         
         int turnNr;
         string description = "";
@@ -64,8 +65,8 @@ namespace SWGame
 
             
             listBoxOfCharacters.ItemsSource = chars;
-                                 
 
+            
 
         }
        
@@ -104,6 +105,7 @@ namespace SWGame
                 player2.Turn = false;
                 
                 UpdateHPBar(player1HP, player1,player1ProgressBarText);
+                UpdateDescriptionBox();
                 WinCondition();
                 
             }
@@ -119,6 +121,7 @@ namespace SWGame
                 description = player2.Force();
                 player2.Turn = false;
                 UpdateHPBar(player1HP, player1,player1ProgressBarText);
+                UpdateDescriptionBox();
                 WinCondition();
                 
             }
@@ -171,7 +174,12 @@ namespace SWGame
 
             player1 = null;
             player2 = null;
-            descriptionBox.Text = "";
+            player1Image.Source = null;
+            player2Image.Source = null;
+            descriptionBox.Text = " START A NEW GAME !";
+
+            UpdateDescriptionBox();
+
         }
 
         
@@ -181,16 +189,18 @@ namespace SWGame
             if (player1.HP <= 0)
             {
                 MessageBox.Show(player2.Name + " WINS !");
+                description = "";
                 RestartGame();
             }
             else if (player2.HP <= 0)
             {
                 MessageBox.Show(player1.Name + " WINS !");
+                description = "";
                 RestartGame();
             }
-           
-            UpdateDescriptionBox();
-                     
+
+            
+
 
         }
 
@@ -232,26 +242,7 @@ namespace SWGame
 
         }
 
-        private void endTurnButton_Click(object sender, RoutedEventArgs e)
-        {
-            
-            if (turnNr==1)
-            {
-                turnNr = 2;
-                description = player2.Name + "'s turn !\n";
-                UpdateDescriptionBox();
-                player2.Turn = true;
-            }
-            else if(turnNr == 2)
-            {
-                turnNr = 1;
-                description = player1.Name + "'s turn !\n";
-                UpdateDescriptionBox();
-                player1.Turn = true;
-            }
-
-
-        }
+       
         private void UpdateHPBar(ProgressBar hpbar,Character player,Label text)
         {
             
@@ -277,6 +268,7 @@ namespace SWGame
             player1Spell.Visibility = Visibility.Hidden;
             player2Spell.Visibility = Visibility.Hidden;
             endTurnButton.Visibility = Visibility.Hidden;
+            EndTurnButtonBot.Visibility = Visibility.Hidden;
             player1HP.Visibility = Visibility.Hidden;
             player2HP.Visibility = Visibility.Hidden;
             player1ProgressBarText.Visibility = Visibility.Hidden;
@@ -290,6 +282,8 @@ namespace SWGame
             player2Spell.Visibility = Visibility.Hidden;
             playButton.Visibility = Visibility.Visible;
             endTurnButton.Visibility = Visibility.Hidden;
+            EndTurnButtonBot.Visibility = Visibility.Hidden;
+            Play2PlayersButton.Visibility = Visibility.Visible;
             player1HP.Visibility = Visibility.Hidden;
             player2HP.Visibility = Visibility.Hidden;
 
@@ -299,6 +293,7 @@ namespace SWGame
             listBoxOfCharacters.Visibility = Visibility.Visible;
             player1Character.Visibility = Visibility.Visible;
             player2Character.Visibility = Visibility.Visible;
+            
         }
 
         private void PlayGameLabels()
@@ -316,6 +311,7 @@ namespace SWGame
             player2HP.Visibility = Visibility.Visible;
             player1ProgressBarText.Visibility = Visibility.Visible;
             player2ProgressBarText.Visibility = Visibility.Visible;
+            Play2PlayersButton.Visibility = Visibility.Hidden;
         }
 
         private void UpdateDescriptionBox()
@@ -327,6 +323,107 @@ namespace SWGame
 
 
 
+        }
+
+        // Methods needed for playing against computer.
+        private void Play2PlayersButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (player1 != null && player2 != null)
+            {
+                PlayGameLabels();
+                descriptionBox.Text = "";
+                player2.opponent = player1;
+                player1.opponent = player2;
+                player2.MaxHP = player2.HP;
+                player1.MaxHP = player1.HP;
+
+
+                Random random = new Random();
+                turnNr = random.Next(1, 3);
+                if (turnNr == 1)
+                {
+                    player1.Turn = true;
+                    description = player1.Name + " STARTS ! \n";
+                    UpdateDescriptionBox();
+                }
+                else if (turnNr == 2)
+                {
+
+                    player2.Turn = true;
+                    description = player2.Name + " STARTS ! \n";
+                    UpdateDescriptionBox();
+                    BotTurn();
+                    
+                }
+                                                
+                UpdateHPBar(player1HP, player1, player1ProgressBarText);
+                UpdateHPBar(player2HP, player2 , player2ProgressBarText);
+
+                endTurnButton.Visibility = Visibility.Hidden;
+                player2Attack.Visibility = Visibility.Hidden;
+                player2Spell.Visibility = Visibility.Hidden;
+                Play2PlayersButton.Visibility = Visibility.Hidden;
+                EndTurnButtonBot.Visibility = Visibility.Visible;
+
+            }
+            else MessageBox.Show("Choose characters !");
+        }
+
+        private void BotTurn()
+        {
+            Random random = new Random();
+            int actionNr = random.Next(1, 3); // Spell or Attack ? 
+
+            if (player1 != null && player2 != null)
+            {
+                if (actionNr == 1)
+                {
+                    player2Attack_Click(this, null);
+                    endTurnButton_Click(this, null);
+                }
+                else if (actionNr == 2)
+                {
+                    player2Spell_Click(this, null);
+                    endTurnButton_Click(this, null);
+                }
+            }
+
+        }
+        private void endTurnButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (player1 != null && player2 != null)
+            {
+                if (turnNr == 1)
+                {
+                    turnNr = 2;
+                    description = player2.Name + "'s turn !\n";
+                    UpdateDescriptionBox();
+                    player2.Turn = true;
+                }
+                else if (turnNr == 2)
+                {
+                    turnNr = 1;
+                    description = player1.Name + "'s turn !\n";
+                    UpdateDescriptionBox();
+                    player1.Turn = true;
+                }
+            }
+
+
+        }
+        private void EndTurnButtonBot_Click(object sender, RoutedEventArgs e)
+        {
+            if (turnNr == 1) // player always plays as a player1
+            {
+                turnNr = 2;
+                player2.Turn = true;
+                description = player2.Name + "'s turn ! \n";
+                UpdateDescriptionBox();
+                BotTurn();
+                
+            }
+            
+           
         }
     }
 }
