@@ -26,7 +26,7 @@ namespace SWGame
         
         Character player1;
         Character player2;
-        Character bot;
+        
                         
         int turnNr;
         string description = "";
