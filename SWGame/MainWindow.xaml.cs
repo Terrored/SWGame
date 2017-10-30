@@ -77,6 +77,7 @@ namespace SWGame
                 description = player1.Attack_Move();
                 player1.Turn = false;
                 UpdateHPBar(player2HP, player2,player2ProgressBarText);
+                UpdateDescriptionBox();
                 WinCondition();
                 
                 
@@ -92,6 +93,7 @@ namespace SWGame
                 description = player1.Force();
                 player1.Turn = false;
                 UpdateHPBar(player2HP, player2,player2ProgressBarText);
+                UpdateDescriptionBox();
                 WinCondition();
                
             }
